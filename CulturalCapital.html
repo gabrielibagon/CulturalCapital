@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+	<head>
+	</head>
+	<body>
+		<script>
+		function randomString(length, chars){
+			var result = " ";
+			for (var i length; i > 0; i--) result += chars[Math.round(Math.random() * (chars.length - 1))];
+			return result;
+		}
+		var rString = randomString(32, "0987654321");
+		console.log(rString);
+		</script>
+	</body>
+</html>

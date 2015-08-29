@@ -1,3 +1,4 @@
+
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,14 +23,13 @@ public class WebScraper {
 	 */
 	public void webScraper() throws IOException{
 		
-//		for (int i = 1; i<2; i++){
-			int i = 1;
+		for (int i = 49; i<432; i++){
 			String galleryURL = 
 					"http://metmuseum.org/collection/the-collection-online/search?what=Paintings&ft=*&rpp=30&pg=" + i;
 			ArrayList<String> linkList = connector(galleryURL);
 			for (String paintingLink : linkList){
 				paintingScraper("http://metmuseum.org" + paintingLink);
-		//	}
+			}
 		}
 	}
 		
@@ -161,32 +161,53 @@ public class WebScraper {
 						culture = allInfo.substring(startCulture, endCulture).trim();
 						break;
 					}
+					if (allInfo.substring(startCulture, m).contains("Geography")){
+						endCulture = m - 10;
+						culture = allInfo.substring(startCulture, endCulture).trim();
+						break;
+					}
 				}
 			break;
 			}
 		}
-		if (imgURL.equals(null) || imgURL.isEmpty() || (artist.equals(null) && title.equals(null) && date.equals(null))){
+		
+		if (imgURL.equals(null) || imgURL.isEmpty()){
 			System.out.println("No info!");
 			System.out.println("-----------------------------------------------");
 			return;
 		}
 		else {
-			System.out.println(title);
-			System.out.println(artist);
-			System.out.println(date);
-			System.out.println(culture);
-			System.out.println(imgURL);
-			System.out.println("-----------------------------------------------");
+			System.out.println("artist: " + artist);
+			System.out.println("title: " + title);
+			System.out.println("date: " +date);
+			System.out.println("culture: " + culture);
+			System.out.println("url: " + imgURL);
 		}
 		
-		String artistFile = artist.replaceAll("[^A-Za-z0-9]", "");
-		String titleFile = title.replaceAll("[^A-Za-z0-9]", "");
+		String artistFile = null;
+		String titleFile = null;
+		if (artist == null){
+			artist = "none";
+			System.out.println("THIS SHOULD PRINT");
+		}
+		if (title == null){
+			title = "none";
+		}
+		
+		artistFile = artist.replaceAll("[^A-Za-z0-9]", "");
+		System.out.println("artistfIle: " + artistFile);
+		titleFile = title.replaceAll("[^A-Za-z0-9]", "");
+		System.out.println("titlefile: " + titleFile);
+		
+		/*
+		 * The following copies the file into my directory
+		 */
+		
 		String destinationFile = folderPath + artistFile + "-" + titleFile + ".jpg";
 		System.out.println(destinationFile);
-		
+		System.out.println("-----------------------------------------------");
 
-		
-		if (!imgURL.equals(null)){
+		if (imgURL != null){
 			URL url = new URL(imgURL);
 			InputStream in = url.openStream();
 			
@@ -200,6 +221,8 @@ public class WebScraper {
 			in.close();
 			out.close();
 		}
+		
+		
 			
 		
 	}
