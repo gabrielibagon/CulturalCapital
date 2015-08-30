@@ -23,9 +23,10 @@ public class WebScraper {
 	 */
 	public void webScraper() throws IOException{
 		
-		for (int i = 49; i<432; i++){
+		for (int i = 110; i<432; i++){
+			System.out.println("%%%%%%%%%%%%%%%" + i + "%%%%%%%%%%%%%%%%%%%");
 			String galleryURL = 
-					"http://metmuseum.org/collection/the-collection-online/search?what=Paintings&ft=*&rpp=30&pg=" + i;
+					"http://metmuseum.org/collection/the-collection-online/search?what=Paintings&ft=*&rpp=90&pg=" + i;
 			ArrayList<String> linkList = connector(galleryURL);
 			for (String paintingLink : linkList){
 				paintingScraper("http://metmuseum.org" + paintingLink);
@@ -70,6 +71,11 @@ public class WebScraper {
 		}
 		Elements imgContainer = doc.getElementsByClass("download");
 		String imgURL = imgContainer.attr("href");
+		for (int i = 0; i<imgURL.length(); i++){
+			if (Character.isWhitespace(imgURL.charAt(i))){
+				return;
+			}
+		}
 		
 		/*
 		 * The following parses the single image for 
