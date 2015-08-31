@@ -1,15 +1,73 @@
 <!DOCTYPE html>
 	<head>
+		<style>
+			figcaption { display: none;}
+			body {
+				background-color: black;
+				padding:0;
+				overflow:hidden;
+				margin:0;
+			}
+
+			video {
+				float: center;
+				z-index: 0;
+				background-size: 80% 80%;
+				top: 0px;
+				right:0px;
+				left: 0px;
+				min-width:80%;
+				min-height: 80%;
+				width: auto;
+				height: auto;
+			}
+		</style>
 	</head>
 	<body>
-		<script>
-		function randomString(length, chars){
-			var result = " ";
-			for (var i length; i > 0; i--) result += chars[Math.round(Math.random() * (chars.length - 1))];
-			return result;
-		}
-		var rString = randomString(32, "0987654321");
-		console.log(rString);
-		</script>
+		<button type="button">Clcik</button>
+		<video>
+			<source src="https://www.youtube.com/embed/hcTbDcMun_I?vq=hd1080" type="video/mp4">
+		</video>
+<!-- 
+		// 	var video = document.body.getElementsByTagName("video")[0],
+		// 	source = video.getElementsByTagName('source')[0],
+		// 	link_list = [],
+		// 	currentVid = 0;
+
+		// 	(function() {
+		// 		function playVid(index) {
+		// 			source.src = link_list[index];
+		// 			currentVid = index;
+		// 			video.load();
+		// 			video.play();
+		// 		}
+				
+		// 	var ajax = new XMLHttpRequest();
+		// 	ajax.onreadystatechange = function() {
+		// 		if (ajax.readyState==4 && ajax.status==200)
+		// 		{
+		// 			var videos = JSON.parse(ajax.responseText).videos;
+		// 			for (var i =0; i < videos.length; i++) {
+		// 				link_list[link_list.length] = videos[i].complete_url;
+		// 			}
+
+		// 			var playNext = function() {
+		// 				nextVid = Math.floor(Math.random() * link_list.length)
+		// 				playVid(nextVid);
+		// 			}
+		// 			video.addEventListener("ended", playNext);
+		// 			playNext();
+		// 		}
+		// 	}
+
+		// 	var btn = document.createElement("BUTTON");
+
+
+
+		// 	ajax.open("GET", "https://api.vid.me/album/20327/videos", true);
+		// 	ajax.send();
+		// 	})();
+ -->
+
 	</body>
 </html>

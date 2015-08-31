@@ -23,10 +23,10 @@ public class WebScraper {
 	 */
 	public void webScraper() throws IOException{
 		
-		for (int i = 110; i<432; i++){
+		for (int i = 106; i<432; i++){
 			System.out.println("%%%%%%%%%%%%%%%" + i + "%%%%%%%%%%%%%%%%%%%");
 			String galleryURL = 
-					"http://metmuseum.org/collection/the-collection-online/search?what=Paintings&ft=*&rpp=90&pg=" + i;
+					"http://metmuseum.org/collection/the-collection-online/search?what=Paintings&ft=*&rpp=30&pg=" + i;
 			ArrayList<String> linkList = connector(galleryURL);
 			for (String paintingLink : linkList){
 				paintingScraper("http://metmuseum.org" + paintingLink);
